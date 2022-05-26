@@ -20,7 +20,7 @@
 			],
 			"dockerRun": {
 				"env": {
-					"FLASK_APP": "metro/app.py"
+					"FLASK_APP": "metro"
 				}
 			},
 			"python": {

@@ -15,6 +15,13 @@ The following was ran on Windows 10; however, it is expected to work on Linux or
 Use the port identified in step three when opening in browser.
 E.g. `http://localhost:49162/`.
 
+# API
+
+Three endpoints exist (left). These generally map to the corresponding NexTrip API endpoints (right) (see [Swagger NexTripAPI](https://svc.metrotransit.org/swagger/index.html) for more info on their API):
+* `/` -> `/nextripv2/routes`
+* `/direction/<id>` -> `/nextripv2/directions/{route_id}`
+* `/stops/<route_id>/<direction_id>` -> `/nextripv2/stops/{route_id}/{direction_id}`
+
 # Developers Guide
 
 ## Setup

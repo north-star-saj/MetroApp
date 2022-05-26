@@ -10,13 +10,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    data = get_routes()
-    return render_template("index.html", busroutes=data)
-
-
-def get_routes():
     r = requests.get("https://svc.metrotransit.org/nextripv2/routes")
-    return r.json()
+    return render_template("index.html", busroutes=r.json())
 
 
 @app.route("/busroute/<id>")

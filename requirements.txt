@@ -1,16 +1,3 @@
-# static checkers/formatters
-black
-flake8
-isort
-pre-commit
-mypy
-
-#documentation
-sphinx
-
 #web app
 flask
 gunicorn
-
-#testing
-pytest

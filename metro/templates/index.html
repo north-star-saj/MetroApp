@@ -25,6 +25,10 @@
           <label>Select Direction</label>
           <select name="direction" data-live-search="true" id="direction" class="form-control" title="Select Direction"></select>
         </div>
+        <div class="col-md-6">
+          <label>Select Stop</label>
+          <select name="stops" data-live-search="true" id="stops" class="form-control" title="Stops"></select>
+        </div>
       </div>
     </div>
     <!-- Optional JavaScript -->
@@ -66,5 +70,39 @@
       });
     </script>
 
+    <script>
+
+      $(document).ready(function () {
+        $("#bus_route").selectpicker();
+        $("#direction").selectpicker();
+        $("#stop").selectpicker();
+
+        function load_data(type, route_id, direction_id) {
+          $.ajax({
+            url: "/stops/" + route_id + "/" + direction_id,
+            method: "GET",
+            success: function (data) {
+              var html = "";
+              for (var count = 0; count < data.length; count++) {
+                  html += '<option value="' + data[count].place_code + '">' + data[count].description + "</option>";
+              }
+              if (type=="routeData"){
+                $("#bus_route").html(html);
+                $("#bus_route").selectpicker("refresh");
+              }
+              else{
+                $("#stops").html(html);
+                $("#stops").selectpicker("refresh");
+              }
+            },
+          });
+        }
+        $("#direction").on("change", function(){
+            var route_id = $("#bus_route").val();
+            var direction_id = $("#direction").val();
+            load_data("stopData", route_id, direction_id)
+          });
+        });
+    </script>
    </body>
 </html>

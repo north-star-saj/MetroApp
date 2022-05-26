@@ -1,6 +1,5 @@
 from flask import (
     Blueprint,
-    Flask,
     jsonify,
     render_template,
 )
@@ -15,7 +14,7 @@ def index():
     return render_template("index.html", busroutes=r.json())
 
 
-@bp.route("/busroute/<id>")
+@bp.route("/direction/<id>")
 def get_direction(id):
     r = requests.get(f"https://svc.metrotransit.org/nextripv2/directions/{id}")
     return jsonify(r.json())

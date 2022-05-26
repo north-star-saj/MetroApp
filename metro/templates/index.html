@@ -44,7 +44,7 @@
 
         function load_data(busroute_id) {
           $.ajax({
-            url: "/busroute/" + busroute_id,
+            url: "/direction/" + busroute_id,
             method: "GET",
             success: function (data) {
               var html = "";

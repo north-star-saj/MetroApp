@@ -40,6 +40,7 @@
     <script>
       $(document).ready(function () {
         $("#direction").selectpicker();
+        $("#stops").selectpicker();
 
         function load_data(busroute_id) {
           $.ajax({
@@ -52,6 +53,9 @@
               }
               $("#direction").html(html);
               $("#direction").selectpicker("refresh");
+
+              $("#stops").html("");
+              $("#stops").selectpicker("refresh");
             },
           });
         }

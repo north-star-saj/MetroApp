@@ -1,3 +1,4 @@
 #web app
 flask
 gunicorn
+requests

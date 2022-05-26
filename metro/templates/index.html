@@ -39,33 +39,26 @@
 
     <script>
       $(document).ready(function () {
-        $("#bus_route").selectpicker();
         $("#direction").selectpicker();
 
-        function load_data(type, category_id) {
+        function load_data(busroute_id) {
           $.ajax({
-            url: "/busroute/" + category_id,
+            url: "/busroute/" + busroute_id,
             method: "GET",
             success: function (data) {
               var html = "";
               for (var count = 0; count < data.length; count++) {
                   html += '<option value="' + data[count].direction_id + '">' + data[count].direction_name + "</option>";
               }
-              if (type=="routeData"){
-                $("#bus_route").html(html);
-                $("#bus_route").selectpicker("refresh");
-              }
-              else{
-                $("#direction").html(html);
-                $("#direction").selectpicker("refresh");
-              }
+              $("#direction").html(html);
+              $("#direction").selectpicker("refresh");
             },
           });
         }
 
         $("#bus_route").on("change", function() {
-          var category_id=$("#bus_route").val();
-          load_data("directionData", category_id);
+          var busroute_id=$("#bus_route").val();
+          load_data(busroute_id);
         });
       });
     </script>
@@ -73,11 +66,9 @@
     <script>
 
       $(document).ready(function () {
-        $("#bus_route").selectpicker();
-        $("#direction").selectpicker();
-        $("#stop").selectpicker();
+        $("#stops").selectpicker();
 
-        function load_data(type, route_id, direction_id) {
+        function load_data(route_id, direction_id) {
           $.ajax({
             url: "/stops/" + route_id + "/" + direction_id,
             method: "GET",
@@ -86,21 +77,15 @@
               for (var count = 0; count < data.length; count++) {
                   html += '<option value="' + data[count].place_code + '">' + data[count].description + "</option>";
               }
-              if (type=="routeData"){
-                $("#bus_route").html(html);
-                $("#bus_route").selectpicker("refresh");
-              }
-              else{
-                $("#stops").html(html);
-                $("#stops").selectpicker("refresh");
-              }
+              $("#stops").html(html);
+              $("#stops").selectpicker("refresh");
             },
           });
         }
         $("#direction").on("change", function(){
             var route_id = $("#bus_route").val();
             var direction_id = $("#direction").val();
-            load_data("stopData", route_id, direction_id)
+            load_data(route_id, direction_id)
           });
         });
     </script>
